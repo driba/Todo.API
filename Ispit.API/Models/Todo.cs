@@ -1,19 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ispit.API.Models
 {
     public class Todo
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "Exceeded maximum Title length of 100 characters")]
         public string Title { get; set; }
 
-        [StringLength(3000, ErrorMessage = "Exceeded maximum description length")]
-        public string? Description { get; set; }
-        public bool IsCompleted { get; set; } = false;
+        public string? Description { get; set; } = null;
+
+        public bool? IsCompleted { get; set; } = null;
 
     }
 }
